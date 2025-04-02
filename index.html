@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Win Predictor</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        html,body{
+            margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+        }
+        .personal-details {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px;
+  background-color: rgba(30, 41, 59, 0.8);
+  border-radius: 5px;
+  text-align: right;
+}
+
+.personal-details h3 {
+  color: #4ade80;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.personal-details p {
+  color: #e2e8f0;
+  margin: 2px 0;
+  font-size: 12px;
+}
+
+        
+        .container {
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(to right, #d9d9d9, #1f91c9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #e2e8f0;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: rgba(30, 41, 59, 0.6);
+            border: 1px solid #4b5563;
+            border-radius: 0.5rem;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #ef4444;
+            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3);
+        }
+        
+        .input-group {
+            display: flex;
+            align-items: center;
+            background-color: rgba(30, 41, 59, 0.6);
+            border: 1px solid #4b5563;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .input-group input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            text-align: center;
+        }
+        
+        .btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .predict-btn {
+            display: block;
+            margin: 0 auto 2rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(to right, #991b1b, #b91c1c);
+            border: 1px solid #7f1d1d;
+            border-radius: 0.5rem;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .predict-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(to right, #b91c1c, #dc2626);
+        }
+        
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .result-header svg {
+            color: #9ca3af;
+        }
+        
+        .result-header h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .team-result {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .probability-bar {
+            width: 100%;
+            height: 1rem;
+            background-color: rgba(75, 85, 99, 0.3);
+            border-radius: 9999px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+        
+        .probability-fill {
+            height: 100%;
+            background: linear-gradient(to right, #22c55e, #16a34a);
+            border-radius: 9999px;
+            transition: width 0.5s ease-out;
+        }
+        
+        .teams-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .team-card {
+            flex: 1;
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        
+        .team-name {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-prob {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+        
+        .team-label {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+        
+        .team-vs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #9ca3af;
+        }
+        
+        .winning-team {
+            background-color: rgba(22, 163, 74, 0.2);
+        }
+        
+        .losing-team {
+            background-color: rgba(30, 41, 59, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>IPL Win Predictor - Machine learning <br> Trained on 2008-2024 dataset</h1>
+        
+        <div class="grid grid-cols-2">
+            <div>
+                <label for="batting-team">Select the batting team</label>
+                <select id="batting-team" class="select-input">
+                    <!-- JavaScript -->
+                </select>
+            </div>
+            
+            <div>
+                <label for="bowling-team">Select the bowling team</label>
+                <select id="bowling-team" class="select-input">
+                    <!-- JavaScript -->
+                </select>
+            </div>
+        </div>
+        
+        <div>
+            <label for="city">Cities</label>
+            <select id="city" class="select-input">
+                <!-- JavaScript -->
+            </select>
+        </div>
+        
+        <div style="margin-top: 1.5rem;">
+            <label for="target">Target</label>
+            <div class="input-group">
+                <input type="number" id="target" value="190">
+                <button class="btn" id="target-minus">−</button>
+                <button class="btn" id="target-plus">+</button>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-3" style="margin-top: 1.5rem;">
+            <div>
+                <label for="score">Score</label>
+                <div class="input-group">
+                    <input type="number" id="score" value="100">
+                    <button class="btn" id="score-minus">−</button>
+                    <button class="btn" id="score-plus">+</button>
+                </div>
+            </div>
+            
+            <div>
+                <label for="wickets">Wickets</label>
+                <div class="input-group">
+                    <input type="number" id="wickets" value="0" min="0" max="10">
+                    <button class="btn" id="wickets-minus">−</button>
+                    <button class="btn" id="wickets-plus">+</button>
+                </div>
+            </div>
+            
+            <div>
+                <label for="overs">Overs completed</label>
+                <div class="input-group">
+                    <input type="number" id="overs" value="12" min="0" max="20">
+                    <button class="btn" id="overs-minus">−</button>
+                    <button class="btn" id="overs-plus">+</button>
+                </div>
+            </div>
+        </div>
+        
+        <button id="predict-btn" class="predict-btn">Predict Probability</button>
+        
+        <div class="teams-container">
+            <div id="batting-team-card" class="team-card winning-team">
+                <div id="batting-team-name" class="team-name">Delhi Capitals</div>
+                <div id="batting-win-prob" class="team-prob">55%</div>
+                <div class="team-label">Win Probability</div>
+            </div>
+            
+            <div class="team-vs">VS</div>
+            
+            <div id="bowling-team-card" class="team-card losing-team">
+                <div id="bowling-team-name" class="team-name">Kings XI Punjab</div>
+                <div id="bowling-win-prob" class="team-prob">45%</div>
+                <div class="team-label">Win Probability</div>
+            </div>
+        </div>
+        
+        <div class="probability-bar">
+            <div id="probability-fill" class="probability-fill" style="width: 55%;"></div>
+        </div>
+    </div>
+    <div class="personal-details">
+        <h3>Created by: </h3>
+        <p>T SRI HARSHA</p>
+        <p>23BCE7205</p>
+        <p>CSE 3008- INTRODUCTION TO MACHINE LEARNING</p>
+      </div>
+
+<script src="DATA.JS"></script>
+</body>
+</html>
