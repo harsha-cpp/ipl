@@ -5,7 +5,7 @@ const teams = [
     'Delhi Capitals',
     'Kolkata Knight Riders',
     'Mumbai Indians',
-    'Punjab Kings',
+    'Rising Pune Super Gaints',
     'Rajasthan Royals',
     'Royal Challengers Bangalore',
     'Sunrisers Hyderabad',
@@ -13,41 +13,41 @@ const teams = [
 ];
 
 const cities = [
-    'Bengaluru',
+    'Bengaluru-Chinnaswamy',
     'Chennai-Chepauk',
-    'Delhi',
-    'Hyderabad',
-    'Kolkata',
-    'Mumbai',
-    'Jaipur',
-    'Pune',
-    'Mohali',
-    'Dubai',
-    'Abu Dhabi'
+    'Delhi-Arun Jaitley',
+    'Hyderabad-Rajiv Gandhi',
+    'Kolkata-Eden Gardens',
+    'Mumbai-Wankhede',
+    'Jaipur-Sawai Mansingh',
+    'Mohali- MCA',
+    'Pune - Subrata Roy Sahara Stadium',
+    'Dubai-Dubai international Stadium',
+    'Abu Dhabi- Abu dhabi cricket ground'
 ];
 const teamStrength = {
-    'Chennai Super Kings': 80,
+    'Chennai Super Kings': 90,
     'Delhi Capitals': 75,
     'Gujarat Titans': 78,
     'Kolkata Knight Riders': 77,
     'Mumbai Indians': 82,
-    'Punjab Kings': 70,
     'Rajasthan Royals': 72,
     'Royal Challengers Bangalore': 86,
     'Sunrisers Hyderabad': 71,
+    'Rising Pune Super Gaints': 78,
     'Kings XI Punjab': 60
 };
 
 
 const homeAdvantage = {
-    'Chennai Super Kings': ['Chennai'],
-    'Delhi Capitals': ['Delhi'],
-    'Kolkata Knight Riders': ['Kolkata'],
-    'Mumbai Indians': ['Mumbai'],
-    'Punjab Kings': ['Mohali'],
-    'Kings XI Punjab': ['Mohali'],
-    'Rajasthan Royals': ['Jaipur'],
-    'Royal Challengers Bangalore': ['Bengaluru'],
+    'Chennai Super Kings': ['Chennai-Chepauk'],
+    'Delhi Capitals': ['Delhi-Arun Jaitley'],
+    'Kolkata Knight Riders': ['Kolkata-Eden Gardens'],
+    'Mumbai Indians': ['Mumbai-Wankhede'],
+    'Rising Pune Super Gaints':['Subrata Roy Sahara Stadium'],
+    'Kings XI Punjab': ['Mohali- MCA'],
+    'Rajasthan Royals': ['Jaipur-Sawai Mansingh'],
+    'Royal Challengers Bangalore': ['Bengaluru-Chinnaswamy'],
     'Sunrisers Hyderabad': ['Hyderabad'],
 };
 const data = document.getElementById('ipl.pynb')
