@@ -3,9 +3,7 @@
 const teams = [
     'Chennai Super Kings',
     'Delhi Capitals',
-    'Gujarat Titans',
     'Kolkata Knight Riders',
-    'Lucknow Super Giants',
     'Mumbai Indians',
     'Punjab Kings',
     'Rajasthan Royals',
@@ -15,7 +13,6 @@ const teams = [
 ];
 
 const cities = [
-    'Ahmedabad',
     'Bengaluru',
     'Chennai',
     'Delhi',
@@ -32,20 +29,18 @@ const teamStrength = {
     'Delhi Capitals': 75,
     'Gujarat Titans': 78,
     'Kolkata Knight Riders': 77,
-    'Lucknow Super Giants': 74,
     'Mumbai Indians': 82,
     'Punjab Kings': 70,
     'Rajasthan Royals': 72,
-    'Royal Challengers Bangalore': 76,
+    'Royal Challengers Bangalore': 86,
     'Sunrisers Hyderabad': 71,
-    'Kings XI Punjab': 70
+    'Kings XI Punjab': 60
 };
 
 
 const homeAdvantage = {
     'Chennai Super Kings': ['Chennai'],
     'Delhi Capitals': ['Delhi'],
-    'Gujarat Titans': ['Ahmedabad'],
     'Kolkata Knight Riders': ['Kolkata'],
     'Mumbai Indians': ['Mumbai'],
     'Punjab Kings': ['Mohali'],
@@ -53,7 +48,6 @@ const homeAdvantage = {
     'Rajasthan Royals': ['Jaipur'],
     'Royal Challengers Bangalore': ['Bengaluru'],
     'Sunrisers Hyderabad': ['Hyderabad'],
-    'Lucknow Super Giants': ['Lucknow']
 };
 const data = document.getElementById('ipl.pynb')
 const pipefile = document.getElementById('pipe.pkl')
