@@ -14,13 +14,14 @@ const teams = [
 
 const cities = [
     'Bengaluru',
-    'Chennai',
+    'Chennai-Chepauk',
     'Delhi',
     'Hyderabad',
     'Kolkata',
     'Mumbai',
+    'Jaipur',
     'Pune',
-    'Sharjah',
+    'Mohali',
     'Dubai',
     'Abu Dhabi'
 ];
