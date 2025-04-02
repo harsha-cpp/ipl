@@ -32,7 +32,7 @@ const teamStrength = {
     'Kolkata Knight Riders': 77,
     'Mumbai Indians': 82,
     'Rajasthan Royals': 72,
-    'Royal Challengers Bangalore': 86,
+    'Royal Challengers Bangalore': 76,
     'Sunrisers Hyderabad': 71,
     'Rising Pune Super Gaints': 78,
     'Kings XI Punjab': 60
